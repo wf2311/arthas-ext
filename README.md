@@ -1,7 +1,7 @@
 # arthas-ext
 
 ## 功能概述
-在官方提供的`arthas-tunnel-server:arthas-tunnel-server`提供了以下功能的增强：
+在集成官方提供的`arthas-tunnel-server`下，扩展了以下功能：
 - 通过级联下拉框按`服务->实例`自动展示arthas agent列表，无需手动输入agentId进行连接；
 - 基于Nacos动态配置实现的`用户->项目`的权限访问控制，可以动态添加修改用户、密码以及用户可以访问的项目访问；
 - 支持代理连接模式，即：通过服务端转发代理连接到arthas agent;
