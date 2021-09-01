@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.wf2311</groupId>
+        <artifactId>common-lib-parent</artifactId>
+        <version>2021.04-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.wf2311</groupId>
+    <artifactId>arthas-ext</artifactId>
+    <version>2021.07-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <arthas.version>3.5.2</arthas.version>
+    </properties>
+    <modules>
+        <module>dynamic-arthas-spring-boot-starter</module>
+        <module>arthas-tunnel-web</module>
+    </modules>
+
+</project>

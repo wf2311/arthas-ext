@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arthas-tunnel-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arthas-tunnel-web
+  template:
+    metadata:
+      labels:
+        app: arthas-tunnel-web
+    spec:
+      containers:
+        - env:
+            - name: SERVER_PORT
+              value: '9999'
+            - name: TUNNEL_SERVER_PORT
+              value: '7777'
+            - name: JVM_OPTS
+              value: '-Xmx256m -Xms256m'
+            - name: NACOS_ADDR
+              value: 'localhost:8848'
+            - name: NACOS_NAMESPACE
+              value: 'publoc'
+          name: arthas-tunnel-web
+          image: 'wf2311/arthas-tunnel-web:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9999
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arthas-tunnel-web
+  namespace: support
+spec:
+  ports:
+    - port: 9999
+      targetPort: 9999
+      name: arthas-tunnel-web
+    - port: 7777
+      targetPort: 7777
+      name: arthas-tunnel-server
+  selector:
+    app: arthas-tunnel-web
+  type: LoadBalancer
