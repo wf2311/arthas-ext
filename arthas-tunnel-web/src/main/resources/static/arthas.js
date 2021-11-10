@@ -1,8 +1,8 @@
 var registerApplications = null;
-var applications = null;
 var serverInfo = null;
 var arthasAgentSplit = null;
 $(document).ready(function () {
+    initArthasHtmlTitle();
     initArthasAgentSplit();
     reloadRegisterApplications();
     initServerInfo();
@@ -34,6 +34,14 @@ function initServerInfo() {
 function initArthasAgentSplit() {
     var result = reqSync("/api/arthas/agent/split", "get");
     arthasAgentSplit = result;
+}
+
+
+function initArthasHtmlTitle() {
+    var title = reqSync("/api/arthas/html/title", "get");
+    if (title) {
+        document.title = title;
+    }
 }
 
 /**

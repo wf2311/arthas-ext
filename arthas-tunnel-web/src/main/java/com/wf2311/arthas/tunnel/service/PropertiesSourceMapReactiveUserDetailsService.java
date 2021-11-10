@@ -1,6 +1,7 @@
 package com.wf2311.arthas.tunnel.service;
 
-import com.wf2311.arthas.tunnel.config.AuthUserProperties;
+import com.google.common.base.Strings;
+import com.wf2311.arthas.tunnel.config.AuthExtProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -40,7 +41,7 @@ public class PropertiesSourceMapReactiveUserDetailsService implements ReactiveUs
 
 
     @Resource
-    private AuthUserProperties authUserProperties;
+    private AuthExtProperties authExtProperties;
 
     @Resource
     private ObjectProvider<PasswordEncoder> passwordEncoder;
@@ -48,7 +49,14 @@ public class PropertiesSourceMapReactiveUserDetailsService implements ReactiveUs
     private void reset(Collection<UserDetails> users) {
         Assert.notEmpty(users, "users cannot be null or empty");
         this.users.clear();
+        log.info("users reset");
         for (UserDetails user : users) {
+            String password = user.getPassword();
+            if (Strings.isNullOrEmpty(password)) {
+                log.warn("username= {} password is empty", user.getUsername());
+                continue;
+            }
+            log.info("add user : name={} {}", user.getUsername(), password);
             this.users.put(getKey(user.getUsername()), user);
         }
     }
@@ -71,7 +79,7 @@ public class PropertiesSourceMapReactiveUserDetailsService implements ReactiveUs
     }
 
     public void updateUsers() {
-        Set<SecurityProperties.User> users = authUserProperties.getUsers();
+        Set<SecurityProperties.User> users = authExtProperties.getUsers();
         if (CollectionUtils.isEmpty(users)) {
             return;
         }

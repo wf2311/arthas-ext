@@ -12,11 +12,13 @@ import java.util.Set;
  * @author <a href="mailto:wf2311@163.com">wf2311</a>
  * @since 2021/7/28 09:16.
  */
-@ConfigurationProperties(prefix = AuthUserProperties.PREFIX)
+@ConfigurationProperties(prefix = AuthExtProperties.PREFIX)
 @Configuration
 @Data
-public class AuthUserProperties implements Serializable {
+public class AuthExtProperties implements Serializable {
     public static final String PREFIX = "arthas.tunnel";
+
+    private String htmlTitle="Arthas控制台";
 
     private String superAdminRoleSign;
 

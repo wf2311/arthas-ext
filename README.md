@@ -88,7 +88,7 @@ services:
     image: wf2311/arthas-tunnel-web:latest
     container_name: arthas-tunnel-web
     environment:
-      - JAVA_OPTS=-Xmx256m -Xms256m
+      - JVM_OPTS=-Xmx256m -Xms256m
       - SERVER_PORT=<本服务的启动端口，默认为9999>
       - TUNNEL_SERVER_PORT=<Tunnel Server的启动端口，默认为7777>
       - NACOS_ADDR=<nacos服务地址>

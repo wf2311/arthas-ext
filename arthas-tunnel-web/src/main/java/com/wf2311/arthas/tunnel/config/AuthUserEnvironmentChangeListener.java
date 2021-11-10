@@ -43,7 +43,7 @@ public class AuthUserEnvironmentChangeListener implements ApplicationListener<En
     private boolean isUserChanged(EnvironmentChangeEvent event) {
         Set<String> keys = event.getKeys();
         for (String key : keys) {
-            if (key.startsWith(AuthUserProperties.PREFIX)) {
+            if (key.startsWith(AuthExtProperties.PREFIX)) {
                 return true;
             }
         }

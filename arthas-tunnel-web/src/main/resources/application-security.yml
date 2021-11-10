@@ -1,0 +1,18 @@
+arthas:
+  tunnel:
+    super-admin-role-sign: '*' #超级管理员的角色标志
+    users:
+      - name: arthas  #登录名
+        password: 2OLgl$B4  #登录密码
+        roles: ${arthas.tunnel.super-admin-role-sign}  #roles=${arthas.tunnel.super-admin-role-sign} 表示超级管理员,拥有查看所有app agent的权限
+      - name: user  #登录名
+        password: vTearU  #登录密码
+        roles:  #可以访问的项目列表
+          - smart-campus-user-center
+          - smart-campus-user-auth
+          - smart-campus-user-account
+      - name: org
+        password: 1NowEK
+        roles:
+          - smart-campus-organization
+          - smart-campus-permission

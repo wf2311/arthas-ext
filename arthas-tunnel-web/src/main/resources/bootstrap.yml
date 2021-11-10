@@ -15,7 +15,7 @@ spring:
     nacos:
       config:
         server-addr: 192.168.40.56:8848 #nacos注册中心地址
-        namespace: dev #对应的namespaceId
+        namespace: testing-2 #对应的namespaceId
         group: ${spring.application.name} #分组ID，这里使用spring.application.name的值
         name: application.yaml
         refresh-enabled: true
@@ -43,22 +43,4 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
-
-
-auth:
-  users:
-    - name: arthas
-      password: 123456
-      roles: '*'
-    - name: user
-      password: vTearU
-      roles:
-        - smart-campus-user-center
-        - smart-campus-user-auth
-        - smart-campus-user-account
-    - name: org
-      password: 1NowEK
-      roles:
-        - smart-campus-organization
-        - smart-campus-permission
 

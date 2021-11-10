@@ -4,7 +4,7 @@ import com.alibaba.arthas.tunnel.server.AgentInfo;
 import com.alibaba.arthas.tunnel.server.TunnelServer;
 import com.alibaba.arthas.tunnel.server.app.configuration.ArthasProperties;
 import com.google.common.base.Strings;
-import com.wf2311.arthas.tunnel.config.AuthUserProperties;
+import com.wf2311.arthas.tunnel.config.AuthExtProperties;
 import com.wf2311.arthas.tunnel.model.ArthasAgent;
 import com.wf2311.arthas.tunnel.model.ArthasAgentGroup;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class ApiController {
     @Autowired
     private ArthasProperties arthasProperties;
     @Autowired
-    private AuthUserProperties authUserProperties;
+    private AuthExtProperties authExtProperties;
     @Resource
     private ReactiveUserDetailsService userDetailsService;
 
@@ -50,6 +50,11 @@ public class ApiController {
         }
         return u.getAuthorities().stream().filter(g -> g.getAuthority() != null)
                 .map(GrantedAuthority::getAuthority).collect(Collectors.toSet());
+    }
+
+    @GetMapping("/arthas/html/title")
+    public String getHtmlTitle() {
+        return authExtProperties.getHtmlTitle();
     }
 
     /**
@@ -74,6 +79,7 @@ public class ApiController {
 
     /**
      * 获取当前用户可以访问的 arthas agents列表
+     *
      * @return
      */
     @GetMapping(value = "/arthas/access/agents")
@@ -108,7 +114,7 @@ public class ApiController {
     }
 
     private boolean isSuperAdmin(Set<String> roles) {
-        return accessApp(roles, authUserProperties.getSuperAdminRoleSign());
+        return accessApp(roles, authExtProperties.getSuperAdminRoleSign());
     }
 
     private boolean accessApp(Set<String> roles, String appName) {
