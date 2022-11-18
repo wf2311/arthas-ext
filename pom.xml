@@ -19,7 +19,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <arthas.version>3.5.2</arthas.version>
+        <arthas.version>3.6.7</arthas.version>
     </properties>
     <modules>
         <module>dynamic-arthas-spring-boot-starter</module>
