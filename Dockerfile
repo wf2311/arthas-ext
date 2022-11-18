@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine as builder
 ARG APP_NAME
-MAINTAINER wangfeng1 "wf2311@163.com"
+MAINTAINER wf2311 "wf2311@163.com"
 WORKDIR application
 COPY arthas-tunnel-web/target/${APP_NAME}.jar application.jar
 RUN java -Djarmode=layertools -jar application.jar extract

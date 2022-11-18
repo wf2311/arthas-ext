@@ -27,10 +27,6 @@ public class AuthUserEnvironmentChangeListener implements ApplicationListener<En
         if (!isUserChanged(event)) {
             return;
         }
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-        }
         new Thread(() -> {
             try {
                 TimeUnit.SECONDS.sleep(5);

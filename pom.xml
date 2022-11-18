@@ -19,11 +19,32 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <arthas.version>3.5.2</arthas.version>
+        <arthas.version>3.6.7</arthas.version>
     </properties>
     <modules>
         <module>dynamic-arthas-spring-boot-starter</module>
         <module>arthas-tunnel-web</module>
     </modules>
+    
+    <profiles>
+        <profile>
+            <id>allow-snapshots</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>snapshots-repo</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
 
 </project>
