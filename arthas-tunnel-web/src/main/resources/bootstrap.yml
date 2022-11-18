@@ -1,5 +1,5 @@
 server:
-  port: 9999
+  port: 9923
 arthas:
   server:
     port: 7777
@@ -14,8 +14,8 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 192.168.40.56:8848 #nacos注册中心地址
-        namespace: testing-2 #对应的namespaceId
+        server-addr: 192.168.8.20:8848 #nacos注册中心地址
+        namespace: dev #对应的namespaceId
         group: ${spring.application.name} #分组ID，这里使用spring.application.name的值
         name: application.yaml
         refresh-enabled: true
